@@ -14,6 +14,7 @@ var roads = [
   "Marketplace-Town Hall",
   "Shop-Town Hall",
 ];
+// console.log(roads);
 
 function buildGraph(edges) {
   let graph = Object.create(null);
@@ -32,6 +33,8 @@ function buildGraph(edges) {
 }
 
 var roadGraph = buildGraph(roads);
+// console.log(roadGraph);
+
 
 var VillageState = class VillageState {
   constructor(place, parcels) {
@@ -53,6 +56,16 @@ var VillageState = class VillageState {
   }
 }
 
+/* let first = new VillageState(
+  "Post Office",
+  [{place: "Post Office", address: "Alice's House"}]
+  );
+  let next = first.move("Alice's House");
+  console.log(next.place);
+  console.log(next.parcels);
+  console.log(first.place); */
+
+
 function runRobot(state, robot, memory) {
   for (let turn = 0; ; turn++) {
     if (state.parcels.length == 0) {
@@ -68,7 +81,6 @@ function runRobot(state, robot, memory) {
 
 function randomPick(array) {
   let choice = Math.floor(Math.random() * array.length);
-  126;
   return array[choice];
 }
 
@@ -90,6 +102,7 @@ VillageState.random = function (parcelCount = 5) {
 };
 
 // runRobot(VillageState.random(), randomRobot);
+
 
 var mailRoute = [
   "Alice's House",
@@ -139,6 +152,10 @@ function goalOrientedRobot({ place, parcels }, route) {
   return { direction: route[0], memory: route.slice(1) };
 }
 
+
+runRobot(VillageState.random(), goalOrientedRobot, []);
+
+/*
 // MEASURING A ROBOT
 function countSteps(state, robot, memory) {
   for (let steps = 0; ; steps++) {
@@ -224,3 +241,5 @@ class PGroup {
   // → false
   console.log(b.has("a"));
   // → false
+
+  */
